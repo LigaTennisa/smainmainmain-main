@@ -1,0 +1,105 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Лига тенниса</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/navigation.css'%}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<script src="{% static 'js/app.js' %}" defer></script>	
+	<!-- для мобильной версии сайта -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+
+<body>	
+	<header class = "header">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class = "logo">
+				<a href="/""" class="navbar-brand" href="Liga Tennisa">
+					<p><img src="https://img.icons8.com/emoji/12x/tennis-emoji.png" alt="logo" width="120" class="logo-img" align="left">
+					<div class = "ligatennisa"><a href="/""" class="ligatennisa"><p>ЛИГА<br/>ТЕННИСА</p></a></div>	
+				</a></div>
+				<div class="nav-toggle"><span></span></div>
+				<ul id = "menu" >
+					<li class="nav-item">
+						<a href="/tournaments" class="nav-link">Турниры</a>
+					</li>
+					<li class="nav-item">
+						<a href="/courts" class="nav-link">Корты</a>
+					</li>
+					<li class="nav-item">
+						<a href="/find_partner" class="nav-link">Найти партнера</a>
+					</li>	
+				</ul>
+			
+				
+				<div class="topnav-right">
+					{%if request.user.is_authenticated %}
+					<a href="/myposts" class="btnlogin"> {{ request.user.first_name | title }}</span>
+					<a href="{% url 'logout' %}" class="btnregistr">Выйти</a>
+					{%else%}
+					<a href="/login" class="btnlogin">
+						Вход
+					</a>
+						<a href="/register" class="btnregistr">
+						Регистрация
+					</a>
+					{%endif%}
+				</div>
+			</div>
+			<div class="nav-toggle">
+				<input  id="burger-checkbox" class="burger-checkbox">
+				<label for="burger-checkbox" class="burger"></label>
+				<ul class="menu-list">
+					<script>
+						$('.burger-checkbox').on('click', function(){
+						  $('#menu').toggleClass('active');
+						});
+					</script>
+				</ul>
+			</div>
+		</nav>
+
+	</header>
+
+  	<main>
+	  	{% if messages %}
+			<div class="messages">
+			{% for message in messages %}
+				<div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+					{{ message }}
+				</div>
+			{% endfor %}
+			</div>
+		{% endif %}
+		    
+	    {%block content%} 
+	    {%endblock content%}
+  	</main>
+
+	  {% comment %} <footer>
+		<div>
+			<ul class = "menu">
+				<li><a href="/aboutus">О нас</a></li>
+				<li><a href="/contact">Контакты</a></li>
+				<li><a href="">Политика конфиденциальности</a></li>
+			</ul>
+			<ul class = "social">
+			  <li><a href="#"> <img class="mx-1" src="https://cdn-icons-png.flaticon.com/512/1077/1077042.png" alt="Insta Icon" width="32" height="32"></a></li>
+			  <li><a href="#"> <img class="mx-1" src="https://cdn-icons-png.flaticon.com/512/25/25684.png" alt="VK Icon" width="32" height="32"></a></li>
+			  <li><a href="#"> <img class="mx-1" src="https://cdn-icons-png.flaticon.com/512/2111/2111710.png" alt="TG Icon" width="32" height="32"></a></li>
+			</ul>
+		  <p>©2024. Все права защищены</p>
+		</div>
+	</footer> {% endcomment %}
+	
+  </body>
+</html>

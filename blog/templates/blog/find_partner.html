@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Найти партнера</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/find_partner.css'%}" type="text/css">
+	<script src="{% static 'js/app.js' %}" defer></script>	
+	<!-- для мобильной версии сайта -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+
+
+<body>
+  <div>
+    <h1 class="find">Найти партнера</h1>
+    <div class="create">
+      <a href="{% url 'add_post' %}" class="create">
+        Создать форму
+        <img class="mx-1" src="https://cdn-icons-png.flaticon.com/512/748/748113.png" width="24" height="24">
+      </a>
+    </div>
+    <div class="card-container">
+      <div>
+        {% for post in posts %}
+          <div class="otherforms">
+            <h3>{{ post.title }}</h3>
+            {% if request.user.is_authenticated %}
+              {% if request.user == post.author %}
+                <p><a href="{% url 'myposts' %}">{{ post.author.first_name }} {{ post.author.last_name }}</a></p>
+              {% else %}
+                <p><a href="{% url 'user_profile' post.author.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a></p>
+              {% endif %}
+            {% else %}
+              <p>{{ post.author.first_name }} {{ post.author.last_name }}</p>
+            {% endif %}
+            <p>Корт: {{ post.court }}</p>
+            <p>Дата: {{ post.training_date }}</p>
+            <p>Время: {{ post.training_time }}</p>
+            <p>Пожелания: {{ post.preferences }}</p>
+            <small>{{ post.published_at | date:"M d, Y" }}</small>
+            {% if request.user.is_authenticated %}
+              {% if request.user == post.author %}
+                <p class="my">Мой пост</p>
+              {% else %}
+                <div class="people">
+                  {% if request.user in post.responders.all %}
+                    <form method="post" action="{% url 'cancel_responder' post.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="responder_id" value="{{ request.user.id }}">
+                      <button class="submit">Отменить отклик</button>
+                    </form>
+                  {% else %}
+                    <form id="respond-form" method="post" action="{% url 'respond_to_post' post.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="responder_id" value="{{ request.user.id }}">
+                      <button id="respond-button" class="submit">Откликнуться</button>
+                    </form>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок для отображения формы отклика -->
+  <div id="response-form-container"></div>
+
+  <!-- JavaScript для динамического добавления формы -->
+  <script>
+    document.getElementById('respond-button').addEventListener('click', function() {
+      var responseForm = document.getElementById('respond-form').cloneNode(true);
+      document.getElementById('response-form-container').appendChild(responseForm);
+    });
+  </script>
+
+</body>
+{% endblock content %} 

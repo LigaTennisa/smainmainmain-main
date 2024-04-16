@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'respond_to_post' post.id %}">
+    {% csrf_token %}
+    <button type="submit" name="action" value="accept">Принять отклик</button>
+    <button type="submit" name="action" value="reject">Отклонить отклик</button>
+</form>

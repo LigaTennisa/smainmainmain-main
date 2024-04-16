@@ -1,0 +1,7 @@
+<!-- create_partner_offer.html -->
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>

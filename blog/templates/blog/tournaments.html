@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+	
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь турниров по большому теннису в Тюмени</title>
+    <style>
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #777;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Календарь турниров по большому теннису в Тюмени</h1>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Турнир</th>
+                <th>Место проведения</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>10.04.2024</td>
+                <td>Открытый кубок Тюмени</td>
+                <td>Центральный теннисный клуб</td>
+            </tr>
+            <tr>
+                <td>25.05.2024</td>
+                <td>Тюменский чемпионат</td>
+                <td>Дворец спорта "Юность"</td>
+            </tr>
+            <tr>
+                <td>12.09.2024</td>
+                <td>Турнир "Золотая ракетка"</td>
+                <td>Спортивный комплекс "Теннисный рай"</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        <p>&copy; 2024 Календарь турниров по большому теннису в Тюмени. Все права защищены.</p>
+    </footer>
+</body>
+
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  
+  
+  <input type="date" id="datepicker">
+  
+  <div id="events"></div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+{% endblock content %}

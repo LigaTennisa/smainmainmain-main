@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Личный кабинет</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/myprofile.css'%}" type="text/css">
+	<script src="{% static 'js/app.js' %}" defer></script>	
+	<!-- для мобильной версии сайта -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+  
+<body>	
+	<div id = "page">		
+		<div id ="top-container">
+			<img src="https://cdn-icons-png.flaticon.com/512/15066/15066588.png" width = "250">
+			<p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
+				<div class = "pages">
+					<hr class = "line">
+					<a href="/find-partner">Найти партнера</a>
+					<a href="/myposts">Мои объявления</a>
+					<a href="/myrespond">Мои отклики</a>
+					<a href="/favorites">Избранное</a>
+				</div>
+		</div>  
+		<script>
+			$('.nav-toggle').on('click', function(){
+				 $('#menu').toggleClass('active');
+			});
+		</script>           
+			
+		<div class="ads-border mt-4">
+			
+			{% if user_posts %}
+			<p>Мои объявления:</p>
+			<hr class="line2">
+			  {% for post in user_posts %}
+				<div class="ads">
+				  <h2>{{ post.title }}</h2>
+				  <p>Корт: {{ post.court }}</p>
+				  <p>Дата: {{ post.training_date }}</p>
+				  <p>Время: {{ post.training_time }}</p>
+				  <p>Пожелания: {{ post.preferences }}</p>  
+				  <small>{{ post.published_at | date:"M d, Y" }}</small>  
+				</div> 
+				<div class="left-container">
+				  <div class="otclick">
+					<p>Отклики: {% if post.responders.count > 0 %} <a href="#" onclick="openRespondersList({{ post.id }})">{{ post.responders.count }}</a> {% else %} Нет откликов {% endif %}
+					<button id="responders-list-button" data-url="{% url 'responders_list' 0 %}" onclick="openRespondersList({{ post.id }})">Open Responders List</button> 
+					</p>
+				  </div>
+				  <script>
+					function openRespondersList(postId) {
+					  var url = document.getElementById('responders-list-button').getAttribute('data-url').replace('0', postId);
+					  var width = 600;
+					  var height = 400;
+					  var left = (screen.width - width) / 2;
+					  var top = (screen.height - height) / 2;
+					  var options = 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left;
+					  window.open(url, 'Responders List', options);
+					}
+				  </script>          
+		  
+				  <div class="change">
+					<a class="redact" href="{% url 'post-edit' post.id %}">Редактировать</a><br>
+					<a class="delete" href="{% url 'post-delete' post.id %}">Удалить</a>
+				  </div>
+				</div>
+			  {% endfor %}  
+			{% else %}
+			<p>Нет объявлений. Хотите <a href="{% url 'add_post' %}">создать новое объявление</a>?</p>
+			{% endif %}
+		  </div>
+		  
+</body>
+</html>
+{% endblock content %}

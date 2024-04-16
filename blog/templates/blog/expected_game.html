@@ -1,0 +1,9 @@
+<!-- Раздел для отображения списка ожидаемых игр -->
+<div>
+    <h3>Ожидаемые игры</h3>
+    <ul>
+        {% for expected_game in expected_games %}
+            <li>{{ expected_game.game }} - {{ expected_game.responder }}</li>
+        {% endfor %}
+    </ul>
+</div>

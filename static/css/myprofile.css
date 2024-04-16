@@ -1,0 +1,216 @@
+*, *:after, *:before {
+    font-family: "Raleway", sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    transition: .5s ease-in-out;
+    /* добавим плавность переходов для всех элементов страницы*/
+}
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    min-height: 100%;
+    overflow-x: none;
+}
+/* добавим очистку потока для всех контейнеров, внутри которых задано обтекание дочерних элементов */
+header:after, .container:after, footer:after, .ads:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#page {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1750px;
+    padding: 0;
+}
+
+.title {
+    position: relative;
+    overflow: visible;
+    text-align: center;
+    margin: 25px;
+    color: black;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+#top-container{
+    width: 20%;
+    float: left;
+    position: relative;
+	align-items: center;
+}
+
+#top-container img{ 
+    display: inline-block;
+    position: relative;
+    margin: 20px;
+    border: 0px solid #000000;
+}
+
+#top-container p{ 
+    font-size: 25px;
+	font-weight: 500;
+	color: #272727;
+    margin: 20px;
+}
+
+.pages {
+    position: absolute;
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.pages a {
+    color: black;
+    display: block;
+    margin: 20px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.line {
+    width: 110%;
+    margin: 10px;
+}
+
+.line2 {
+    width: 90%;
+    margin-top: 10px;
+    
+}
+
+.pages a:hover {
+    color:#B3D131;
+}
+
+.ads-border p {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+.ads {
+    margin-top: 20px; 
+    border-radius: 33px;
+	padding: 2rem; 
+    font-family: Montserrat;
+    word-break: break-all;
+    opacity: 0;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    min-width: 40%;
+    max-width: 40%;
+    height: auto;
+    background: #B3D131;   
+    border-radius: 20px;
+    padding: 25px;
+    animation-name: fadeForm;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    
+}
+
+.ads-border {
+    flex-flow: column nowrap;
+    float:right;
+    width: 75%;
+}
+@keyframes fadeForm{
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .25;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.ads p, .ads h2 {
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.ads small {
+    float: right;
+    color: white;
+    font-size: 20px;
+}
+h3 {
+    color: black;
+} 
+
+/* левая часть */
+.left-container {
+    float: right;
+    width: 57%;
+}
+.otclick {
+    position: relative;
+}
+.otclick p {
+    font-size: 22px;
+    font-weight: 500;
+    float: left;
+    transform: translateY(-1100%);
+}
+#responders-list-button {
+    margin-left: 10px;
+    position: absolute;
+    float: left;
+}
+
+.change {
+    transform: translateY(-150%);
+    float: right;
+}
+.redact {
+    float:right;
+    color: black;
+    font-size: 25px;
+}
+.delete {
+    float: right;
+    color: #EA870F;
+    font-size: 25px;
+}
+
+@media (max-width: 1040px) {
+    .ads-border {
+        transform: translateX(5%);
+    }
+    .change {
+        transform: translate(-30%, -190%);
+    }
+}
+@media (max-width: 480px) {
+    
+
+ }

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+body {
+    background: white;
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.delete-post {
+    font-family: Montserrat;
+    opacity: 0;
+    position: relative;
+    top: 70px;
+    z-index: 2;
+    max-width: 415px;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 6px 50px rgba(168,228,160);
+    border-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 38px;
+    padding-bottom: 38px;
+    animation-name: fadeForm;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeForm{
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .25;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.button  {
+    
+    position: absolute;
+    font-size: 20px;
+    height: 50px;
+    size: 60px;
+    background-color: white;
+    border: 2px solid #E5E4E2;
+    border-radius: 5px;
+    color: black;
+    text-align: center; 
+    text-decoration: none; 
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;  
+    margin: 0 auto; /*отцентрирует блок по центру родительского элемента */
+    display: block;
+}
+
+.no {
+    margin-top: 10px;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    float: right;
+}

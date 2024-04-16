@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+	
+{% block content %}
+
+<h1>Отклики</h1>
+
+{% for responder in post.responders.all %}
+    <div>
+        <p><a href="{% url 'user_profile' responder.id %}">{{ responder.first_name }} {{ responder.last_name }}</a></p>
+        {% if request.user == post.author %}
+        <form method="post" action="{% url 'accept_responder' post.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="responder_id" value="{{ responder.id }}">
+            <!-- Добавьте кнопку или ссылку для принятия отклика -->
+<a href="{% url 'accept_responder' post.id %}">Принять</a>
+
+        </form>
+        <form method="post" action="{% url 'cancel_responder' post.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="responder_id" value="{{ responder.id }}">
+            <button type="submit">Отменить</button>
+        </form>
+        {% endif %}
+    </div>
+{% endfor %}
+<a href="{% url 'myposts' %}">Назад</a>
+
+
+
+
+{% endblock content %}

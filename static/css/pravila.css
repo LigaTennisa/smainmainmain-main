@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+body {
+    overflow-x: hidden;
+    background: white;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    position:absolute; 
+    top: 220px;
+    left: 20px;
+    background: #fff;
+}
+  
+.pravila {   
+    width: 80%;
+    margin: 0 auto;
+}
+
+

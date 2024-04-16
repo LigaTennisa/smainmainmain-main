@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Удалить форму</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic|Playfair+Display:400,700&subset=latin,cyrillic">
+  	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/post_delete.css'%}" type="text/css">
+	<script src="{% static 'js/app.js' %}" defer></script>	
+	<!-- для мобильной версии сайта -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+
+<body>
+  <div class ="delete-post" style="position:absolute; top:300px; left:700px;">
+    <h2>Удалить форму</h2>
+
+    <form method="POST">
+      {% csrf_token %}
+      <p>Вы уверены, что хотите удалить форму "{{post.title}}"?</p>
+      <div>
+        <div class = "form-buttons">
+          <input type="submit" value="Да, удалить" class ="button"/>
+        </div>
+        <a href="{% url 'find_partner' %}" class="no">
+          Отмена
+          <img class="mx-1" src="https://cdn-icons-png.flaticon.com/512/2961/2961937.png"  width="24" height="24">
+        </a>
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock content %}
